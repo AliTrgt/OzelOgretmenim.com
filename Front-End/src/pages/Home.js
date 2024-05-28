@@ -3,12 +3,12 @@ import Header from '../components/layout/Header';
 import './Home.css';
 import Button from '../components/common/Button';
 import LessonItems from '../components/common/LessonItems/LessonItems';
-import Footer from '../components/layout/Footer/Footer'; // İthalat burada doğru yazıldı
+import Footer from '../components/layout/Footer/Footer';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [tutors, setTutors] = useState([]);
+    const [lessons, setLessons] = useState('');
 
     useEffect(() => {
         fetchTutors();
@@ -17,11 +17,20 @@ const Home = () => {
     const fetchTutors = async () => {
         try {
             const response = await axios.get('http://localhost:8080/tutor'); // Correct URL
-            console.log(response.data); // Gelen veriyi konsola yazdırın
-            setTutors(response.data); // Gelen veriyi state'e kaydedin
+            console.log(response.data); // Log the received data to the console
+            setTutors(response.data); // Save the received data to the state
         } catch (error) {
             console.error('Error fetching tutors:', error);
         }
+    };
+
+    const handleLesson = (event) => {
+        setLessons(event.target.value);
+    };
+
+    const filterLesson = () => {
+        // Implement lesson filtering logic here
+        console.log('Filtering lessons:', lessons);
     };
 
     return (
@@ -32,22 +41,25 @@ const Home = () => {
                     <div className='items-container'>
                         <div className='content'>
                             <h2>
-                                <span>En İyi Öğretmenlerden</span> Online Veya Yüz Yüze Dersler
-                                Alın
+                                <span>En İyi Öğretmenlerden</span> Online Veya Yüz Yüze Dersler Alın
                             </h2>
                             <ul>
                                 <li>
-                                    <i className='fa-solid fa-circle-check'></i> Kendiniz veya
-                                    çocuğunuz için en ideal öğretmeni hemen bul.
+                                    <i className='fa-solid fa-circle-check'></i> Kendiniz veya çocuğunuz için en ideal öğretmeni hemen bul.
                                 </li>
                                 <li>
-                                    <i className='fa-solid fa-circle-check'></i> Alanında uzman
-                                    eğitmenlerden en iyi dersleri al.
+                                    <i className='fa-solid fa-circle-check'></i> Alanında uzman eğitmenlerden en iyi dersleri al.
                                 </li>
                             </ul>
                             <div className='searchbar-container'>
-                                <input type='text' placeholder='Hangi dersi almak istersin?' />
+                                <input
+                                    type='text'
+                                    placeholder='Hangi dersi almak istersin?'
+                                    value={lessons}
+                                    onChange={handleLesson}
+                                />
                                 <Button
+                                    onClick={filterLesson}
                                     styled={{
                                         width: '300px',
                                         height: '35px',
@@ -61,7 +73,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className='image'>
-                            <img src={require('../assests/images/ozelders.png')} alt='' />
+                            <img src={require('../assests/images/ozelders.png')} alt="ozelDers" />
                         </div>
                     </div>
                 </div>
@@ -73,12 +85,9 @@ const Home = () => {
                 <div className='quick-tutor-container'>
                     <h2>Alanında Uzman Öğretmenleri Keşfet!</h2>
                     <p>
-                        Özel ders alanında her yıl onbinlerce öğrenci aradığı öğretmeni
-                        buluyor
+                        Özel ders alanında her yıl onbinlerce öğrenci aradığı öğretmeni buluyor
                     </p>
-                    <Link to={'/tutor-advertisements'}>
-                        <Button>Hemen Özel Ders Al</Button>
-                    </Link>
+                    <Button>Hemen Özel Ders Al</Button>
                 </div>
             </section>
             <Footer />

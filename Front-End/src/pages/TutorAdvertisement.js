@@ -123,10 +123,9 @@ export const DUMMY_DATA = [
 
 
 const TutorAdvertisement = () => {
-    const [subject, setSubject] = useState('');
     const [city, setCity] = useState('');
     const [selectedGender, setSelectedGender] = useState('');
-    const { priceRange, appointment,setAppointment  } = useContext(Context);
+    const { priceRange, appointment,setAppointment,lessons,setLessons  } = useContext(Context);
 
     const handleCheckboxChange = (event) => {
         const gender = event.target.nextSibling.textContent;
@@ -141,10 +140,10 @@ const TutorAdvertisement = () => {
 
     const filteredTutors = DUMMY_DATA.filter((tutor) => {
         return (
-            (subject === '' || tutor.subject.toLowerCase().includes(subject.toLowerCase())) &&
             (city === '' || tutor.city.toLowerCase().includes(city.toLowerCase())) &&
             (selectedGender === '' || tutor.gender === selectedGender) &&
-            (tutor.price >= priceRange[0] && tutor.price <= priceRange[1])
+            (tutor.price >= priceRange[0] && tutor.price <= priceRange[1]) &&
+            (lessons === '' || tutor.subject.toLowerCase().includes(lessons.toLowerCase()))
         );
     });
 
@@ -177,8 +176,8 @@ const TutorAdvertisement = () => {
                       className={styled.dropdown}
                       type='dropdown'
                       id='subject'
-                      value={subject}
-                      onChange={(e) => setSubject(e.target.value)}
+                      value={lessons}
+                      onChange={(e) => setLessons(e.target.value)}
                       required
                       placeholder='Ders adı giriniz'
                     />

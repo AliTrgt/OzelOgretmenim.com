@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [appointment, setAppointment] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [lessons, setLessons] = useState('');
   const [user, setUser] = useState(null);
 
   // useEffect ile localStorage'dan kullanıcı bilgisini yükleyin
@@ -33,7 +34,7 @@ export const ContextProvider = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={{ step, setStep, priceRange, setPriceRange, appointment, setAppointment, isLoggedIn, setIsLoggedIn, user, setUser: handleSetUser }}>
+    <Context.Provider value={{ step, setStep, priceRange, setPriceRange, appointment, setAppointment, isLoggedIn, setIsLoggedIn, user, setUser: handleSetUser,lessons,setLessons }}>
       {children}
     </Context.Provider>
   );

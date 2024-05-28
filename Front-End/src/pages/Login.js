@@ -5,7 +5,7 @@ import { Context } from '../context/Context';
 import axios from 'axios';
 
 const Login = () => {
-  const { setStep,setUser,isLoggedIn ,setIsLoggedIn } = useContext(Context);
+  const { setStep, setUser, setIsLoggedIn } = useContext(Context);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -27,8 +27,9 @@ const Login = () => {
         password,
       });
       setUser({
-        userName: username,
-      })
+        username: username,
+        password: password,
+      });
       setIsLoggedIn(true);
       console.log('Login response:', response.data);
       navigate('/');

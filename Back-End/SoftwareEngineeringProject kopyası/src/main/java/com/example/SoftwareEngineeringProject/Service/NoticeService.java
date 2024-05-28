@@ -45,6 +45,7 @@ public class NoticeService {
 
             if(savedNotice.isPresent()){
                 Notice tempNotice = savedNotice.get();
+                tempNotice.setTitle(notice.getTitle());
                 tempNotice.setPrice(notice.getPrice());
                 tempNotice.setDescription(notice.getDescription());
 

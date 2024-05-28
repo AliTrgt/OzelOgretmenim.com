@@ -29,6 +29,9 @@ public class Notice {
 
     private String description;
 
+    private String title;
+
+
     @ManyToOne
     @JoinColumn(name = "tutor_id", referencedColumnName = "id")
     private Tutor tutor;

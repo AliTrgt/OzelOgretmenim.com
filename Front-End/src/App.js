@@ -32,7 +32,7 @@ function App() {
             element={<TutorAdvertisement />}
           />
             <Route path='/tutor-advertisements/:id' element={<TutorDetail />} />
-            <Route path='/tutor-advertisements/:id/message' element={<MessagePage />} />
+            {/* <Route path='/tutor-advertisements/:id/message' element={<MessagePage />} /> */}
             <Route path='/edit-profile' element={<EditProfile />}/>
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>

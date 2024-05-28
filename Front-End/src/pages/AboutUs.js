@@ -37,7 +37,7 @@ const AboutUs = () => {
               geldiği tartışılmaz bir gerçektir. <br /> <br /> Öğrenciler okul
               derslerinde anlamadığı konuları veya eksik olduğu derslerde
               kendini geliştirip, eğitim hayatına sağlam adımlarla devam etmek
-              için alanında uzman eğitimciden özel ders almak istemektedirler.{' '}
+              için alanında uzman eğitimciden özel ders almak istemektedirler.
               <br />
               <br />
               Veliler ise bu alanda genel araştırma yapıp çocuğuna yardımcı
