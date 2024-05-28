@@ -44,32 +44,23 @@ public class NoticeController {
 
 
     @PostMapping("/create")
-    public Notice createNoticeForLoggedInUser(HttpServletRequest request, @RequestBody Notice notice) throws IdNotFoundException {
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            throw new RuntimeException("No active session");
-        }
+    public Notice createNoticeForLoggedInUser(@RequestBody Notice notice) throws IdNotFoundException {
 
-        SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-        if (securityContext == null) {
-            throw new RuntimeException("Security context not found in session");
-        }
+         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
 
-        Authentication authentication = securityContext.getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new RuntimeException("User is not authenticated");
-        }
+        Optional<Tutor> tutor = tutorRepository.findTutorByUserId(user.getId());
 
-        String loggedInUsername = authentication.getName();
-        Optional<Tutor> tutor = tutorRepository.findByUser_Username(loggedInUsername);
-        if (tutor.isPresent()) {
-            Tutor tempUser = tutor.get();
-            int tutorId = tempUser.getId();
+        if(tutor.isPresent()) {
+            Tutor tempTutor = tutor.get();
+            int tutorId = tempTutor.getId();
             return noticeService.createNotice(notice, tutorId);
         }
-
-        throw new IdNotFoundException("Tutor not found for the logged-in user");
+        else {
+            throw new IdNotFoundException("Id Not ");
+        }
     }
+
 
 
 
@@ -80,7 +71,7 @@ public class NoticeController {
     }
 
 
-    @PreAuthorize("(hasRole('ROLE_TUTOR') and @noticeService.findById(#noticeId).tutor.id == principal.id) or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_TUTOR') and @noticeService.findById(#noticeId).tutor.id == principal.id)")
     @PutMapping("/update/{noticeId}")
     public Notice updateNotice(@PathVariable int noticeId,@RequestBody Notice notice) throws IdNotFoundException {
         return noticeService.updateNotice(noticeId,notice);
@@ -88,10 +79,10 @@ public class NoticeController {
 
 
 
-    @PreAuthorize("(hasRole('ROLE_TUTOR') and @noticeService.findById(#noticeId).tutor.id == principal.id) or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("(hasRole('ROLE_TUTOR') and @noticeService.findById(#noticeId).tutor.id == principal.id)")
     @DeleteMapping("/delete/{noticeId}")
     public void deleteNotice(@PathVariable int noticeId) throws IdNotFoundException {
-         noticeService.deleteNotice(noticeId);
+        noticeService.deleteNotice(noticeId);
     }
 
 

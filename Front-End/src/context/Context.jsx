@@ -10,7 +10,18 @@ export const ContextProvider = ({ children }) => {
   const [appointment, setAppointment] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [lessons, setLessons] = useState('');
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    username: '',
+    password: '',
+  });
+
+
+
+
+useEffect(() => {
+
+}, [user]);
+
 
   // useEffect ile localStorage'dan kullanıcı bilgisini yükleyin
   useEffect(() => {
@@ -34,7 +45,7 @@ export const ContextProvider = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={{ step, setStep, priceRange, setPriceRange, appointment, setAppointment, isLoggedIn, setIsLoggedIn, user, setUser: handleSetUser,lessons,setLessons }}>
+    <Context.Provider value={{ step, setStep,  priceRange, setPriceRange, appointment, setAppointment, isLoggedIn, setIsLoggedIn, user, setUser: handleSetUser,lessons,setLessons }}>
       {children}
     </Context.Provider>
   );

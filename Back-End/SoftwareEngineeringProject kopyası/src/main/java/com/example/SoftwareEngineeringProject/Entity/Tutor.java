@@ -2,6 +2,7 @@ package com.example.SoftwareEngineeringProject.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 @Data
 @Builder
 @Table(name = "tbl_tutor")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "noticeList"})
 public class Tutor {
 
     @Id
@@ -45,15 +47,8 @@ public class Tutor {
 
     private String telephoneNumber;
 
-    @OneToMany(mappedBy = "tutor",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Appointment> appointmentList;
-
-    @OneToMany(mappedBy = "tutor",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Notice> noticeList;
-
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
-
 
 }

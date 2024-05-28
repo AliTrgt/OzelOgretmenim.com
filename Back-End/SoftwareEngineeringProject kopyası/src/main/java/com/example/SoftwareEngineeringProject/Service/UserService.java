@@ -17,7 +17,6 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
     private final TutorService tutorService;
     private final TutorRepository tutorRepository;
 
@@ -29,21 +28,12 @@ public class UserService {
         this.tutorRepository = tutorRepository;
     }
 
-    public Optional<User> findByUsername(String username){
+    public Optional<User> getByUsername(String username) throws IdNotFoundException {
         return userRepository.findByUsername(username);
     }
 
 
-    public User loginUser(String username,String password) throws IdNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow( ()  -> new IdNotFoundException("Username Not Found : "+username));
 
-        if(user != null && passwordEncoder.matches(password,user.getPassword()) ){
-            return user;
-        }
-
-        else  throw new IdNotFoundException("Kullanıcı adı ya da parola yanlış");
-
-    }
 
 
 

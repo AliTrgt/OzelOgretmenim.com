@@ -3,6 +3,7 @@ package com.example.SoftwareEngineeringProject.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,21 +20,21 @@ import org.hibernate.annotations.OnDeleteAction;
 @Data
 @Builder
 @Table(name = "tbl_notice")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Notice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private double price;
+    private String title;
 
     private String description;
 
-    private String title;
+    private String price;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tutor_id", referencedColumnName = "id")
     private Tutor tutor;
-
 }

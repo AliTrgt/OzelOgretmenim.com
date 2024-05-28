@@ -125,7 +125,7 @@ export const DUMMY_DATA = [
 const TutorAdvertisement = () => {
     const [city, setCity] = useState('');
     const [selectedGender, setSelectedGender] = useState('');
-    const { priceRange, appointment,setAppointment,lessons,setLessons  } = useContext(Context);
+    const { priceRange, appointment, setAppointment, lessons, setLessons } = useContext(Context);
 
     const handleCheckboxChange = (event) => {
         const gender = event.target.nextSibling.textContent;
@@ -152,101 +152,101 @@ const TutorAdvertisement = () => {
     }
 
     return (
-      <div>
-        {!appointment ? (
-          <>
-            <Header />
-            <div className={styled['main-container']}>
-              <div className={styled['main-content']}>
-                <div className={styled.description}>
-                  <h2>Özel ders için öğretmen bul.</h2>
-                  <p>
-                    350'den fazla konuda özel dersler için özel öğretmenler
-                    bulun. Öğretmenlerinizi, konumlarına, öğrettikleri konuya,
-                    verdikleri ders seviyesine <br /> ve dersleri yüz yüze mi
-                    yoksa online mı verdiklerine göre seçin.
-                  </p>
-                </div>
-                <div className={styled['item-container']}>
-                  <div className={styled['order-item']}>
-                    <label htmlFor='subject'>
-                      Hangi dersi öğrenmek istersin ?
-                    </label>
-                    <input
-                      className={styled.dropdown}
-                      type='dropdown'
-                      id='subject'
-                      value={lessons}
-                      onChange={(e) => setLessons(e.target.value)}
-                      required
-                      placeholder='Ders adı giriniz'
-                    />
-                    <label htmlFor='city'>Hangi şehir ?</label>
-                    <input
-                      className={styled.dropdown}
-                      type='dropdown'
-                      id='city'
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      required
-                      placeholder='Şehir adı giriniz'
-                    />
+        <div>
+            {!appointment ? (
+                <>
+                    <Header />
+                    <div className={styled['main-container']}>
+                        <div className={styled['main-content']}>
+                            <div className={styled.description}>
+                                <h2>Özel ders için öğretmen bul.</h2>
+                                <p>
+                                    350'den fazla konuda özel dersler için özel öğretmenler
+                                    bulun. Öğretmenlerinizi, konumlarına, öğrettikleri konuya,
+                                    verdikleri ders seviyesine <br /> ve dersleri yüz yüze mi
+                                    yoksa online mı verdiklerine göre seçin.
+                                </p>
+                            </div>
+                            <div className={styled['item-container']}>
+                                <div className={styled['order-item']}>
+                                    <label htmlFor='subject'>
+                                        Hangi dersi öğrenmek istersin ?
+                                    </label>
+                                    <input
+                                        className={styled.dropdown}
+                                        type='dropdown'
+                                        id='subject'
+                                        value={lessons}
+                                        onChange={(e) => setLessons(e.target.value)}
+                                        required
+                                        placeholder='Ders adı giriniz'
+                                    />
+                                    <label htmlFor='city'>Hangi şehir ?</label>
+                                    <input
+                                        className={styled.dropdown}
+                                        type='dropdown'
+                                        id='city'
+                                        value={city}
+                                        onChange={(e) => setCity(e.target.value)}
+                                        required
+                                        placeholder='Şehir adı giriniz'
+                                    />
 
-                    <label>Cinsiyet</label>
-                    <div className={styled['radio-container']}>
-                      <div className={styled.checkbox}>
-                        <input
-                          type='checkbox'
-                          id='gender'
-                          name='gender'
-                          value={'erkek'}
-                          checked={selectedGender === 'erkek'}
-                          onChange={handleCheckboxChange}
-                        />
-                        <label
-                          htmlFor='erkek'
-                          className={styled['radio-label']}
-                        >
-                          Erkek
-                        </label>
-                      </div>
-                      <div className={styled.checkbox}>
-                        <input
-                          type='checkbox'
-                          id='gender'
-                          name='gender'
-                          value={'kadın'}
-                          checked={selectedGender === 'kadın'}
-                          onChange={handleCheckboxChange}
-                        />
-                        <label
-                          htmlFor='kadın'
-                          className={styled['radio-label']}
-                        >
-                          Kadın
-                        </label>
-                      </div>
-                    </div>
+                                    <label>Cinsiyet</label>
+                                    <div className={styled['radio-container']}>
+                                        <div className={styled.checkbox}>
+                                            <input
+                                                type='checkbox'
+                                                id='gender'
+                                                name='gender'
+                                                value={'erkek'}
+                                                checked={selectedGender === 'erkek'}
+                                                onChange={handleCheckboxChange}
+                                            />
+                                            <label
+                                                htmlFor='erkek'
+                                                className={styled['radio-label']}
+                                            >
+                                                Erkek
+                                            </label>
+                                        </div>
+                                        <div className={styled.checkbox}>
+                                            <input
+                                                type='checkbox'
+                                                id='gender'
+                                                name='gender'
+                                                value={'kadın'}
+                                                checked={selectedGender === 'kadın'}
+                                                onChange={handleCheckboxChange}
+                                            />
+                                            <label
+                                                htmlFor='kadın'
+                                                className={styled['radio-label']}
+                                            >
+                                                Kadın
+                                            </label>
+                                        </div>
+                                    </div>
 
-                    <MaxMinSlider />
-                    <div className={styled['create-appointment']}>
-                      <button onClick={toggleAppointment} className={styled['create-appointment-btn']}>
-                        İlan oluştur
-                      </button>
+                                    <MaxMinSlider />
+                                    <div className={styled['create-appointment']}>
+                                        <button onClick={toggleAppointment} className={styled['create-appointment-btn']}>
+                                            İlan oluştur
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <TutorCard tutors={filteredTutors} />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div>
-                    <TutorCard tutors={filteredTutors} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <Footer />
-          </>
-        ) : (
-          <NoticeForm />
-        )}
-      </div>
+                    <Footer />
+                </>
+            ) : (
+                <NoticeForm />
+            )}
+        </div>
     );
 };
 

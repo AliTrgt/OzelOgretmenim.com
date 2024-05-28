@@ -40,11 +40,6 @@ public class TutorController {
         return tutorService.createTutor(tutor);
     }
 
-    @PostMapping("/login")
-    public User loginUser(@RequestBody LoginRequest loginRequest) throws IdNotFoundException {
-        return userService.loginUser(loginRequest.getUsername(),loginRequest.getPassword());
-    }
-
 
     @PreAuthorize("(hasRole('ROLE_TUTOR') and #tutorId == principal.id)  or hasRole('ROLE_ADMIN')")
     @PutMapping("/update/{tutorId}")
