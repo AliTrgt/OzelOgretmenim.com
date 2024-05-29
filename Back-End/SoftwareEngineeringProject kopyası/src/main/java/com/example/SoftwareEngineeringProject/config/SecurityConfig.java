@@ -59,13 +59,6 @@ public class SecurityConfig  {
                                         .anyRequest().permitAll()
 
                 )
-                .sessionManagement(
-                        sess ->
-                                sess
-                                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1)
-
-                )
-                .userDetailsService(userDetailsService)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults());
         return http.build();

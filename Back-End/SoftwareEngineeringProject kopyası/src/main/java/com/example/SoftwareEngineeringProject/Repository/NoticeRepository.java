@@ -18,6 +18,7 @@ public interface NoticeRepository extends JpaRepository<Notice,Integer>, JpaSpec
         @Query("SELECT n FROM Notice n WHERE n.price BETWEEN :minPrice AND :maxPrice")
         List<Notice> findByPriceRange(Double minPrice,double maxPrice);
 
+        List<Notice> findNoticeByTutorId(int tutorId);
 
 
 

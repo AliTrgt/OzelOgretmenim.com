@@ -41,7 +41,7 @@ public class TutorController {
     }
 
 
-    @PreAuthorize("(hasRole('ROLE_TUTOR') and #tutorId == principal.id)  or hasRole('ROLE_ADMIN')")
+    
     @PutMapping("/update/{tutorId}")
     public Tutor updateTutor(@PathVariable int tutorId,@RequestBody Tutor tutor) throws IdNotFoundException {
         return tutorService.updateTutor(tutorId,tutor);

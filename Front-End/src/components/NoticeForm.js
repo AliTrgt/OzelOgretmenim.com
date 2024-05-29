@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 const NoticeForm = () => {
-  const {  setAppointment, user } = useContext(Context);
+  const {  setAppointment, user,getBasicAuthHeader } = useContext(Context);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -14,11 +14,15 @@ const NoticeForm = () => {
     description: description,
     price: price,
   };
-    function getBasicAuthHeader(username, password) {
-  const credentials = `${username}:${password}`;
-  const encodedCredentials = btoa(credentials); // btoa() encodes to base64
-  return `Basic ${encodedCredentials}`;
-}
+ const handlePrice = (e) => {
+    const price = e.target.value;
+
+    // Sayı ve ondalık nokta kontrolü
+    if (price === '' || /^[0-9\b]+(\.[0-9\b]{0,2})?$/.test(price)){
+        setPrice(price);
+    }
+ }
+
   const handleAppointment = () => {
     setAppointment(false);
   };
@@ -74,13 +78,15 @@ const NoticeForm = () => {
           />
         </div>
         <div className={styled.price}>
-          <label htmlFor='price'>Fiyat</label>
+          <label htmlFor='price'>Saatlik Ücret</label>
           <input
-            type='text'
+            type='number'
             id='price'
             name='price'
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={handlePrice}
+            min="0"
+            step="1"
             placeholder='Lütfen saatlik ücretinizi girin.'
             required
           />

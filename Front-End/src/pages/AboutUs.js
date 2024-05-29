@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer/Footer';
+import Footer from '../components/layout/Footer/footer';
 import styles from './AboutUs.module.css';
 
 const AboutUs = () => {

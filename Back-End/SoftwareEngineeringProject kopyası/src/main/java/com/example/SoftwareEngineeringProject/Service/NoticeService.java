@@ -77,6 +77,9 @@ public class NoticeService {
         }
 
 
+    public List<Notice> findNoticeByTutorId(int tutorId){
+        return noticeRepository.findNoticeByTutorId(tutorId);
+    }
 
 
 

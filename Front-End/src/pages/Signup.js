@@ -92,6 +92,8 @@ const TeacherForm = () => {
       setIsLoggedIn(true);
       setUser({
         username: userName,
+        password: password,
+        authorities: ['ROLE_TUTOR'],
       });
       navigate('/');
     } catch (error) {
@@ -259,7 +261,7 @@ const StudentForm = () => {
     user: {
       username: userName,
       password: password,
-      authorities: ['ROLE_STUDENT'],
+      authorities: 'ROLE_STUDENT',
     },
   };
 
@@ -278,7 +280,9 @@ const StudentForm = () => {
       console.log('Register response:', userResponse.data);
       setIsLoggedIn(true);
       setUser({
-        userName,
+        username: userName,
+        password: password,
+        authorities: ['ROLE_STUDENT']
       });
       navigate('/');
     } catch (error) {

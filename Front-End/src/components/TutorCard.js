@@ -2,8 +2,8 @@ import React from 'react';
 import styled from './TutorCard.module.css';
 import { Link } from 'react-router-dom';
 
-
 const TutorCard = ({tutors}) => {
+    console.log("tutorcard",tutors);
   return tutors.map((tutor) => (
     <Link key={tutor.id} to={`/tutor-advertisements/${tutor.id}`} className={styled['tutor-card-link']}>
       <div key={tutor.id} className={styled['tutor-card']}>
@@ -14,14 +14,14 @@ const TutorCard = ({tutors}) => {
           />
         </div>
         <div className={styled.description}>
-          <h3 className={styled.title}>{tutor.name}</h3>
+          <h3 className={styled.title}>{tutor.tutor.firstName} {tutor.tutor.lastName}</h3>
           <p>
             <i className='fa-solid fa-location-dot'></i>
-            {tutor.city}
+            {tutor.tutor.city}
           </p>
           <p>
             <i className='fa-solid fa-graduation-cap'></i>
-            {tutor.subject}
+            {tutor.tutor.subject}
           </p>
           <h4 className={styled.title}>{tutor.title}</h4>
           <p>{tutor.description}</p>

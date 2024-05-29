@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect,useContext} from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { DUMMY_DATA } from './TutorAdvertisement';
 import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer/Footer';
+import Footer from '../components/layout/Footer/footer';
 import styled from './TutorDetail.module.css';
-
+import { Context } from '../context/Context';
 const TutorDetail = () => {
+    const { notices,setNotices } = useContext(Context);
   const { id } = useParams();
-  const tutor = DUMMY_DATA.find((tutor) => tutor.id === parseInt(id));
-  if (!tutor) {
+
+  const notice = notices.find((tutor) => tutor.id === parseInt(id));
+  if (!notice) {
     return <h2>Öğretmen Bulunumadı!!!</h2>;
   }
   return (
@@ -18,55 +19,49 @@ const TutorDetail = () => {
         <div className={styled['content']}>
           <div className={styled['left-side']}>
             <div className={styled['tutor-description']}>
-              <h3>{tutor.name} ile ilgili bilgiler</h3>
+              <h3>{notice.tutor.firstName} {notice.tutor.lastName} İle İlgili bilgiler</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-                porro totam maiores ullam omnis assumenda eos odit, autem
-                deserunt veniam dolore nihil aut a reprehenderit minima
-                voluptate vitae facilis repellendus. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. <br /> <br /> Numquam, quis.
-                Mollitia quasi rerum veniam laudantium quo culpa dolorum rem
-                voluptate consequatur est dolor ea molestiae doloremque quae,
-                nihil aliquid error. <br /> <br /> Lorem ipsum dolor sit, amet
-                consectetur adipisicing elit. Magni, sequi quam. Libero dolorem
-                quibusdam doloribus enim dolorum, culpa ipsam quae repellat et
-                sequi perspiciatis veniam dolor tempora dolores quidem
-                inventore?
+                {notice.tutor.description}
               </p>
             </div>
             <div className={styled['tutor-description']}>
-              <h3>{tutor.subject}</h3>
-              <p>{tutor.description}</p>
-            </div>
-            <div className={styled['subject-description']}>
-              <h3>Dersle ilgili Bilgiler</h3>
-              <p>
-                Sevgili öğrenciler, <br /> <br /> İçinde bulunduğunuz eğitim
-                dönemi hayatınız için kritik bir öneme sahip!İhtiyaçlarınızı ve
-                eksiklerinizi tespit edip, bir yol haritası belirleyebilir
-                böylelikle aktif bir eğitim hayatı geçirmenizi sağlayabiliriz.{' '}
-                <br />
-                <br /> Tüm derslerde başarınızın düşmesine sebep olan akıcı
-                okumayama, okuduğunu anlayamama, dikkat ve odaklanma eksikliği
-                gibi önemli problemlerinizi, en iyi arkadaşlarımız olan
-                kitaplardan yararlanarak çözebiliriz ;) <br /> <br /> Ayrıca
-                okula destek çalışmaları ile derslerimizde öğrendiğimiz
-                bilgileri özümseyecek ve akademik başarıyı da yakalayacaksınız.
-              </p>
+              <h3>{notice.tutor.subject}</h3>
+              <p>{notice.description}</p>
             </div>
           </div>
           <div className={styled['right-side']}>
             <div className={styled['img-container']}>
               <img
                 src={require('../assests/images/tutor/tutor1.jpg')}
-                alt={tutor.name}
+                alt={notice.tutor.firstName}
               />
             </div>
-            <h3>{tutor.name}</h3>
+            <h3>{notice.tutor.firstName} {notice.tutor.lastName}</h3>
+            <div className={styled['tutor-price']}>
+              <span className={styled['price-title']}>Ders</span>
+              <span className={styled['subject']}>{notice.tutor.subject}</span>
+            </div>
+            <div className={styled['tutor-price']}>
+              <span className={styled['price-title']}>Email</span>
+              <span className={styled['price']}>{notice.tutor.email}</span>
+            </div>
+            <div className={styled['tutor-price']}>
+              <span className={styled['price-title']}>Cinsiyet</span>
+              <span className={styled['gender']}>{notice.tutor.gender}</span>
+            </div>
+            <div className={styled['tutor-price']}>
+              <span className={styled['price-title']}>Şehir</span>
+              <span className={styled['price']}>{notice.tutor.city}</span>
+            </div>
+            <div className={styled['tutor-price']}>
+              <span className={styled['price-title']}>Telefon</span>
+              <span className={styled['price']}>{notice.tutor.telephoneNumber}</span>
+            </div>
             <div className={styled['tutor-price']}>
               <span className={styled['price-title']}>Saatlik Ücret</span>
-              <span className={styled['price']}>{tutor.price}₺</span>
+              <span className={styled['price']}>{notice.price}₺</span>
             </div>
+
             <Link
               to='/tutor-advertisements/1/message'
               className={styled['send-message-btn']}

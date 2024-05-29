@@ -26,7 +26,7 @@ const EditProfile = () => {
     // Kullanıcı bilgilerini back-end'den al ve state'e ata
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/user/${user.username}`);
+        const response = await axios.get(`http://localhost:8080/tutor/8`);
         const data = response.data;
         setName(data.firstName);
         setSurname(data.lastName);
@@ -55,37 +55,43 @@ const EditProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Şifreler uyuşmuyor!');
-      return;
-    }
+    if (isEditing) {
+      if (password !== confirmPassword) {
+        alert('Şifreler uyuşmuyor!');
+        return;
+      }
 
-    const updatedUserInfo = {
-      firstName: name,
-      lastName: surname,
-      subject: subject,
-      telephoneNumber: phone,
-      email: email,
-      image: image,
-      description: description,
-      gender: selectedGender,
-      city: city,
-      user: {
-        username: userName,
-        password: password,
-        authorities: ['ROLE_TUTOR'],
-      },
-    };
+      const updatedUserInfo = {
+        firstName: name,
+        lastName: surname,
+        subject: subject,
+        telephoneNumber: phone,
+        email: email,
+        image: image,
+        description: description,
+        gender: selectedGender,
+        city: city,
+        user: {
+          username: userName,
+          password: password,
+          authorities: ['ROLE_TUTOR'],
+        },
+      };
 
-    try {
-      const response = await axios.put(`http://localhost:8080/user/update/${user.username}`, updatedUserInfo);
-      console.log('Update response:', response.data);
-      setUser({
-        username: userName,
-      });
-      navigate('/');
-    } catch (error) {
-      console.error('Update failed:', error);
+      try {
+        const response = await axios.put(`http://localhost:8080/tutor/update/8`, updatedUserInfo);
+        console.log('Update response:', response.data);
+        setUser({
+          ...user,
+          username: userName,
+        });
+        setIsEditing(false); // Düzenleme modunu kapat
+        navigate('/');
+      } catch (error) {
+        console.error('Update failed:', error);
+      }
+    } else {
+      setIsEditing(true); // Düzenleme moduna geç
     }
   };
 
@@ -101,6 +107,7 @@ const EditProfile = () => {
           onChange={(e) => setName(e.target.value)}
           disabled={!isEditing}
         />
+        <div>{}</div>
 
         <label htmlFor='surname'>Soyadınız</label>
         <input
@@ -138,6 +145,8 @@ const EditProfile = () => {
           disabled={!isEditing}
         />
 
+        {/* {user.authorities[0] === 'ROLE_TUTOR' && (
+        <div> */}
         <label htmlFor='subject'>Ders</label>
         <input
           type='text'
@@ -147,14 +156,7 @@ const EditProfile = () => {
           disabled={!isEditing}
         />
 
-        <label htmlFor='username'>Kullanıcı Adı</label>
-        <input
-          type='text'
-          id='username'
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          disabled={!isEditing}
-        />
+        {/* </div>)} */}
 
         <label>Cinsiyet</label>
         <div className={styled['radio-container']}>
@@ -187,34 +189,9 @@ const EditProfile = () => {
             </label>
           </div>
         </div>
-
-        <label htmlFor='password'>Şifre</label>
-        <input
-          type='password'
-          id='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          disabled={!isEditing}
-        />
-
-        <label htmlFor='confirmPassword'>Şifre (Tekrar)</label>
-        <input
-          type='password'
-          id='confirmPassword'
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          disabled={!isEditing}
-        />
-
-        {isEditing ? (
-          <button type='submit' className={styled.button}>
-            Güncelle
-          </button>
-        ) : (
-          <button type='button' className={styled.button} onClick={() => setIsEditing(true)}>
-            Düzenle
-          </button>
-        )}
+        <button type='submit' className={styled.button}>
+          {isEditing ? 'Güncelle' : 'Düzenle'}
+        </button>
         <button className={styled.backButton} onClick={() => navigate('/')} disabled={isEditing}>
           Geri Dön
         </button>
