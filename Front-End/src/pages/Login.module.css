@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+      112.5deg,
+      rgb(214, 214, 214) 0%,
+      rgb(214, 214, 214) 10%,
+      rgb(195, 195, 195) 10%,
+      rgb(195, 195, 195) 53%,
+      rgb(176, 176, 176) 53%,
+      rgb(176, 176, 176) 55%,
+      rgb(157, 157, 157) 55%,
+      rgb(157, 157, 157) 60%,
+      rgb(137, 137, 137) 60%,
+      rgb(137, 137, 137) 88%,
+      rgb(118, 118, 118) 88%,
+      rgb(118, 118, 118) 91%,
+      rgb(99, 99, 99) 91%,
+      rgb(99, 99, 99) 100%
+    ),
+    linear-gradient(
+      157.5deg,
+      rgb(214, 214, 214) 0%,
+      rgb(214, 214, 214) 10%,
+      rgb(195, 195, 195) 10%,
+      rgb(195, 195, 195) 53%,
+      rgb(176, 176, 176) 53%,
+      rgb(176, 176, 176) 55%,
+      rgb(157, 157, 157) 55%,
+      rgb(157, 157, 157) 60%,
+      rgb(137, 137, 137) 60%,
+      rgb(137, 137, 137) 88%,
+      rgb(118, 118, 118) 88%,
+      rgb(118, 118, 118) 91%,
+      rgb(99, 99, 99) 91%,
+      rgb(99, 99, 99) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgb(214, 214, 214) 0%,
+      rgb(214, 214, 214) 10%,
+      rgb(195, 195, 195) 10%,
+      rgb(195, 195, 195) 53%,
+      rgb(176, 176, 176) 53%,
+      rgb(176, 176, 176) 55%,
+      rgb(157, 157, 157) 55%,
+      rgb(157, 157, 157) 60%,
+      rgb(137, 137, 137) 60%,
+      rgb(137, 137, 137) 88%,
+      rgb(118, 118, 118) 88%,
+      rgb(118, 118, 118) 91%,
+      rgb(99, 99, 99) 91%,
+      rgb(99, 99, 99) 100%
+    ),
+    linear-gradient(90deg, rgb(195, 195, 195), rgb(228, 228, 228));
+  background-blend-mode: overlay, overlay, overlay, normal;
+  width: 100%;
+  height: 100vh;
+}
+
+.form-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+  form {
+    display: flex;
+    flex-direction: column;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .register {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #007bff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .email-label {
+      margin-bottom: 10px;
+      margin-left: 5px;
+      font-weight: 500;
+    }
+    .password-label {
+      margin-bottom: 10px;
+      margin-left: 5px;
+      font-weight: 500;
+    }
+    #email {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      border-bottom: 2px solid #ced4da;
+      width: 100%;
+      transition: ease-in-out 0.3s;
+    }
+    #email:focus {
+      transition: ease-in-out 0.3s;
+      outline: none;
+      border-bottom: 2px solid #007bff;
+    }
+    #password {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      border-bottom: 2px solid #ced4da;
+      width: 100%;
+      transition: ease-in-out 0.3s;
+      margin-bottom: 50px;
+    }
+    #password:focus {
+      transition: ease-in-out 0.3s;
+      outline: none;
+      border-bottom: 2px solid hsl(211, 100%, 50%);
+    }
+    .button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: ease-in-out 0.3s;
+      width: 100%;
+    }
+    .link {
+      width: 100%;
+      height: 100%;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}
+

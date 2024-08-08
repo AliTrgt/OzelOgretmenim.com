@@ -1,0 +1,8 @@
+.slider-label {
+    margin-bottom: 8px !important;
+}
+
+.max-min {
+  display: flex;
+  justify-content: space-between;
+}

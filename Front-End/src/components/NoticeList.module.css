@@ -1,0 +1,60 @@
+.notice-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+   padding-right: 90px;
+  overflow-wrap: break-word; /* Ensures long words break to fit within the container */
+  word-wrap: break-word; /* Compatibility with older browsers */
+  word-break: break-word; /* Break long words at arbitrary points if necessary */
+  h3 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+  }
+  .price {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+  p {
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 2rem;
+    i {
+      margin-right: 10px;
+      width: 20px;
+      white-space: pre-wrap; /* Preserves whitespace and breaks text as needed */
+      overflow-wrap: break-word; /* Ensures long words break to fit within the container */
+      word-wrap: break-word; /* Compatibility with older browsers */
+      word-break: break-word; /* Break long words at arbitrary points if necessary */
+    }
+  }
+  .description {
+    margin-left: 30px;
+  }
+}
+
+.remove-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+    position: absolute;
+  z-index: 10; /* Ensure the button is above other elements */
+}
